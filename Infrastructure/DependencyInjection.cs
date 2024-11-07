@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Infrastructure.Presistence;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure
 {
@@ -12,7 +9,8 @@ namespace Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             //Register EFCore DB contexts.
-
+            services.AddDbContext<TravelDBContext>(options =>
+                options.UseSqlServer("Server=LAPTOP-C0CETLMF;Database=TEMS_DB;Trusted_Connection=True;TrustServerCertificate=True;"));
             //Register Repository and interfaces 
 
             return services;
