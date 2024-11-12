@@ -1,4 +1,6 @@
-﻿using Infrastructure.Presistence;
+﻿using Application.Abstractions.Repositories;
+using Infrastructure.Presistence;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +13,10 @@ namespace Infrastructure
             //Register EFCore DB contexts.
             services.AddDbContext<TravelDBContext>(options =>
                 options.UseSqlServer("Server=LAPTOP-C0CETLMF;Database=TEMS_DB;Trusted_Connection=True;TrustServerCertificate=True;"));
+
             //Register Repository and interfaces 
+            services.AddScoped<IEnquiryRepository, EnquiryRepository>();
+
 
             return services;
         }

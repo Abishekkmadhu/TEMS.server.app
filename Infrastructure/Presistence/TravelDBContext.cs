@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Abstractions;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Presistence
 {
-    public class TravelDBContext : DbContext
+    public class TravelDBContext : DbContext, ITravelDBContext
     {
         public TravelDBContext(DbContextOptions<TravelDBContext> options)
         : base(options)

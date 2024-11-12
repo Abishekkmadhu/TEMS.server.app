@@ -11,10 +11,19 @@
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
     <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Abstractions\Services\" />
+    <Folder Include="Enquiry\Commands\" />
+    <Folder Include="Enquiry\Handlers\" />
+    <Folder Include="Enquiry\Queries\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
 
 </Project>
