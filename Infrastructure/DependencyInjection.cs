@@ -1,4 +1,7 @@
-﻿using Application.Abstractions.Repositories;
+﻿using Application.Abstractions;
+using Application.Abstractions.Repositories;
+using Application.Abstractions.Services;
+using Application.Services;
 using Infrastructure.Presistence;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +19,8 @@ namespace Infrastructure
 
             //Register Repository and interfaces 
             services.AddScoped<IEnquiryRepository, EnquiryRepository>();
-
+            services.AddScoped<ITravelDBContext, TravelDBContext>();
+            services.AddScoped<IEnquiryService, EnquiryService>();
 
             return services;
         }

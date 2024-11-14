@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions;
 using Application.Abstractions.Repositories;
+using Application.DTOs;
 using Domain.Entities;
 using Infrastructure.Presistence;
 using Microsoft.EntityFrameworkCore;
@@ -49,5 +50,6 @@ namespace Infrastructure.Repositories
                 _dbContext.Customer.Remove(enquiry);
                 await _dbContext.SaveChangesAsync();
             }
+        }
     }
 }

@@ -1,5 +1,7 @@
 using Application;
+using Application.Abstractions.Repositories;
 using Infrastructure;
+using Infrastructure.Repositories;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);

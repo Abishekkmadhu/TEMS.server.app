@@ -17,6 +17,7 @@ namespace Application
             //Add other libraries dependency here
             services.AddMediatR(typeof(DependencyInjection).Assembly);
             services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
+            services.AddAutoMapper(typeof(DependencyInjection).Assembly);
             return services;
         }
     }
