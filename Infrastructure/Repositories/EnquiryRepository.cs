@@ -39,7 +39,13 @@ namespace Infrastructure.Repositories
 
         public async Task<List<Customer>> GetAllEnquiry()
         {
-            return await _dbContext.Customer.ToListAsync();
+            return await _dbContext.Customer
+                .Include(c => c.TravelDetails)
+                .Include(c => c.CustomerPreferences)
+                .Include(c => c.PackagePreference)
+                .Include(c => c.OtherInformation)
+                .Include(c => c.SpecialRequirements)
+                .ToListAsync();
         }
 
         public async Task DeleteEnquiry(int id)

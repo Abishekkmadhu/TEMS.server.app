@@ -8,13 +8,8 @@ namespace Application.DTOs
 {
     public class CustomerPreferencesDto
     {
-        public int CustomerPreferencesId { get; set; }
         public string? PreferredTourDuration { get; set; }
         public bool GuidedTours { get; set; }
         public string? PackageInclusions { get; set; }
-
-        // Foreign key relationship
-        public int CustomerId { get; set; }
-        public CustomerDto Customer { get; set; }
     }
 }

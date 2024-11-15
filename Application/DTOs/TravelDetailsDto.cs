@@ -8,7 +8,6 @@ namespace Application.DTOs
 {
     public class TravelDetailsDto
     {
-        public int TravelDetailsId { get; set; }
         public string? TravelDestination { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -17,9 +16,5 @@ namespace Application.DTOs
         public int? NumberOfChildren { get; set; }
         public int? NumberOfInfants { get; set; }
         public string? TravelPurpose { get; set; }
-
-        // Foreign key relationship
-        public int CustomerId { get; set; }
-        public CustomerDto Customer { get; set; }
     }
 }

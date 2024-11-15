@@ -1,4 +1,6 @@
-﻿using Application.Enquiry.Queries;
+﻿using Application.DTOs;
+using Application.Enquiry.Commands;
+using Application.Enquiry.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -24,7 +26,14 @@ namespace Presentation.Controllers
             return Ok(enquiries);
         }
 
-        //post
+        [HttpPost]
+        public async Task<IActionResult> AddEnquiry(CustomerDto enquiry)
+        {
+            await _mediator.Send(new AddEnquiryCommand(enquiry));
+            return Ok();
+        }
+
+
         //update
         //delete
     }

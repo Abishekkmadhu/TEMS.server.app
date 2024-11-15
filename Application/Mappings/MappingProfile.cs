@@ -14,6 +14,11 @@ namespace Application.Mappings
         public MappingProfile() 
         {
             CreateMap<Customer, CustomerDto>().ReverseMap();
+            CreateMap<TravelDetails, TravelDetailsDto>().ReverseMap();
+            CreateMap<CustomerPreferences, CustomerPreferencesDto>().ReverseMap();
+            CreateMap<PackagePreference, PackagePreferenceDto>().ReverseMap();
+            CreateMap<SpecialRequirements, SpecialRequirementsDto>().ReverseMap();
+            CreateMap<OtherInformation, OtherInformationDto>().ReverseMap();
         }
     }
 }
