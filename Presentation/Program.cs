@@ -1,5 +1,8 @@
 using Application;
+using Application.Abstractions.Repositories;
 using Infrastructure;
+using Infrastructure.Repositories;
+using Presentation.Middlewares;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +22,10 @@ builder.Services.AddApplicationInsightsTelemetry();
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 
+
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
