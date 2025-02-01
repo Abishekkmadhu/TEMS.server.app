@@ -32,6 +32,16 @@ namespace Application.Services
             return _mapper.Map<IEnumerable<CustomerDto>>(customers);
         }
 
+        public CustomerDto GetEnquiryService(Customer customers)
+        {
+            if (customers == null)
+            {
+                _logger.LogError("There is no Enquiries available in the Database.");
+                return null;
+            }
+            return _mapper.Map<CustomerDto>(customers);
+        }
+
         public Customer AddEnquiryService(CustomerDto customer)
         {
             if (customer == null) 
@@ -43,5 +53,14 @@ namespace Application.Services
 
         }
 
+        public Customer UpdateEnquiryService(CustomerDto customer)
+        {
+            if (customer == null)
+            {
+                _logger.LogError("There is no Enquiries available/ Value is null.");
+                return null;
+            }
+            return _mapper.Map<Customer>(customer);
+        }
     }
 }

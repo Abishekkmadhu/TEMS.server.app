@@ -20,21 +20,38 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllEnquiry()
+        public async Task<IActionResult> GetAll()
         {
             var enquiries = await _mediator.Send(new GetAllEnquiryQuery());
             return Ok(enquiries);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddEnquiry(CustomerDto enquiry)
+        [HttpGet("id")]
+        public async Task<IActionResult> Get(int id)
         {
-            await _mediator.Send(new AddEnquiryCommand(enquiry));
-            return Ok();
+            var enquiries = await _mediator.Send(new GetEnquiryQuery(id));
+            return Ok(enquiries);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Add(CustomerDto enquiry)
+        {
+            var result = await _mediator.Send(new AddEnquiryCommand(enquiry));
+            return Ok(result);
+        }
 
-        //update
-        //delete
+        [HttpPut]
+        public async Task<IActionResult> Update(CustomerDto enquiry)
+        {
+            var result = await _mediator.Send(new UpdateEnquiryCommand(enquiry));
+            return Ok(result);
+        }
+
+        [HttpDelete("id")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeleteEnquiryCommand(id));
+            return Ok(result);
+        }
     }
 }
