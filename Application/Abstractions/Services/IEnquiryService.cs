@@ -11,6 +11,8 @@ namespace Application.Abstractions.Services
     public interface IEnquiryService
     {
         IEnumerable<CustomerDto> GetAllEnquiryService(List<Customer?> customers);
+        CustomerDto GetEnquiryService(Customer customers);
         Customer AddEnquiryService(CustomerDto customer);
+        Customer UpdateEnquiryService(CustomerDto customer);
     }
 }

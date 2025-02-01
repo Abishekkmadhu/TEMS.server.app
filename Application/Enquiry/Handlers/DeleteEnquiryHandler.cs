@@ -6,31 +6,30 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Enquiry.Handlers
 {
-    public class AddEnquiryCommandHandler : IRequestHandler<AddEnquiryCommand>
+    public class DeleteEnquiryHandler : IRequestHandler<DeleteEnquiryCommand>
     {
-        private readonly ILogger<AddEnquiryCommandHandler> _logger;
+        private readonly ILogger<DeleteEnquiryHandler> _logger;
         private readonly IEnquiryRepository _enquiryRepository;
         private readonly IEnquiryService _enquiryService;
 
-        public AddEnquiryCommandHandler(IEnquiryRepository enquiryRepository, IEnquiryService enquiryService, ILogger<AddEnquiryCommandHandler> logger)
+        public DeleteEnquiryHandler(IEnquiryRepository enquiryRepository, IEnquiryService enquiryService, ILogger<DeleteEnquiryHandler> logger)
         {
             _enquiryRepository = enquiryRepository;
             _enquiryService = enquiryService;
             _logger = logger;
         }
 
-        public async Task<Unit> Handle(AddEnquiryCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteEnquiryCommand request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("HANDLER LOG : Executing Add enquiry handler request.");
-            var entity = _enquiryService.AddEnquiryService(request.Customer);
-            await _enquiryRepository.AddEnquiry(entity);
+            _logger.LogInformation($"HANDLER LOG : Executing Delete enquiry handler request ID: {request.id}");
+            await _enquiryRepository.DeleteEnquiry(request.id);
             return Unit.Value;
         }
+
     }
 }
