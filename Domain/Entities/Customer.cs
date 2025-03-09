@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Domain.Entities
         public string PhoneNumber { get; set; }
         public string? PreferredContactMethod { get; set; }
         public string? PreferredTimeForContact { get; set; }
+        public EnquiryStatus Status { get; set; } = EnquiryStatus.New;
 
         // Navigation properties for relationships
         public TravelDetails TravelDetails { get; set; }

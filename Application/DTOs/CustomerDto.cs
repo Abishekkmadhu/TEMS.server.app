@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Application.DTOs
         public string PhoneNumber { get; set; }
         public string? PreferredContactMethod { get; set; }
         public string? PreferredTimeForContact { get; set; }
+        public EnquiryStatus EnquiryStatus { get; set; } = EnquiryStatus.New;
         public TravelDetailsDto TravelDetails { get; set; }
         public CustomerPreferencesDto CustomerPreferences { get; set; }
         public PackagePreferenceDto PackagePreference { get; set; }

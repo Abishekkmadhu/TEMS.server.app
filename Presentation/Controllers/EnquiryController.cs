@@ -2,6 +2,7 @@
 using Application.Enquiry.Commands;
 using Application.Enquiry.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
@@ -9,6 +10,8 @@ namespace Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin, User")] // Only users with the role can access this controller
+    //[Authorize]
     public class EnquiryController : ControllerBase
     {
         private readonly IMediator _mediator;

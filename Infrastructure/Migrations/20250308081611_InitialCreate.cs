@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -15,13 +16,13 @@ namespace Infrastructure.Migrations
                 name: "Customer",
                 columns: table => new
                 {
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PreferredContactMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PreferredTimeForContact = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CustomerId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FullName = table.Column<string>(type: "text", nullable: false),
+                    EmailAddress = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
+                    PreferredContactMethod = table.Column<string>(type: "text", nullable: true),
+                    PreferredTimeForContact = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -32,12 +33,12 @@ namespace Infrastructure.Migrations
                 name: "CustomerPreferences",
                 columns: table => new
                 {
-                    CustomerPreferencesId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PreferredTourDuration = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GuidedTours = table.Column<bool>(type: "bit", nullable: false),
-                    PackageInclusions = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                    CustomerPreferencesId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PreferredTourDuration = table.Column<string>(type: "text", nullable: true),
+                    GuidedTours = table.Column<bool>(type: "boolean", nullable: false),
+                    PackageInclusions = table.Column<string>(type: "text", nullable: true),
+                    CustomerId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,11 +55,11 @@ namespace Infrastructure.Migrations
                 name: "OtherInformation",
                 columns: table => new
                 {
-                    OtherInformationId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    HowDidYouHearAboutUs = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PreviousCustomer = table.Column<bool>(type: "bit", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                    OtherInformationId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    HowDidYouHearAboutUs = table.Column<string>(type: "text", nullable: true),
+                    PreviousCustomer = table.Column<bool>(type: "boolean", nullable: false),
+                    CustomerId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,15 +76,15 @@ namespace Infrastructure.Migrations
                 name: "PackagePreferences",
                 columns: table => new
                 {
-                    PackagePreferenceId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PackageType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BudgetRange = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AccommodationType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TransportationPreference = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MealPreferences = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PreferredActivities = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                    PackagePreferenceId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PackageType = table.Column<string>(type: "text", nullable: true),
+                    BudgetRange = table.Column<decimal>(type: "numeric", nullable: true),
+                    AccommodationType = table.Column<string>(type: "text", nullable: true),
+                    TransportationPreference = table.Column<string>(type: "text", nullable: true),
+                    MealPreferences = table.Column<string>(type: "text", nullable: true),
+                    PreferredActivities = table.Column<string>(type: "text", nullable: true),
+                    CustomerId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -100,11 +101,11 @@ namespace Infrastructure.Migrations
                 name: "SpecialRequirements",
                 columns: table => new
                 {
-                    SpecialRequirementsId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SpecialRequests = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TravelInsurance = table.Column<bool>(type: "bit", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                    SpecialRequirementsId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    SpecialRequests = table.Column<string>(type: "text", nullable: true),
+                    TravelInsurance = table.Column<bool>(type: "boolean", nullable: false),
+                    CustomerId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -121,17 +122,17 @@ namespace Infrastructure.Migrations
                 name: "TravelDetails",
                 columns: table => new
                 {
-                    TravelDetailsId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TravelDestination = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FlexibleDates = table.Column<bool>(type: "bit", nullable: false),
-                    NumberOfAdults = table.Column<int>(type: "int", nullable: false),
-                    NumberOfChildren = table.Column<int>(type: "int", nullable: false),
-                    NumberOfInfants = table.Column<int>(type: "int", nullable: false),
-                    TravelPurpose = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                    TravelDetailsId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    TravelDestination = table.Column<string>(type: "text", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    FlexibleDates = table.Column<bool>(type: "boolean", nullable: false),
+                    NumberOfAdults = table.Column<int>(type: "integer", nullable: true),
+                    NumberOfChildren = table.Column<int>(type: "integer", nullable: true),
+                    NumberOfInfants = table.Column<int>(type: "integer", nullable: true),
+                    TravelPurpose = table.Column<string>(type: "text", nullable: true),
+                    CustomerId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
